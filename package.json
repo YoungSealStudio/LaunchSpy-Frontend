@@ -1,11 +1,12 @@
 {
   "name": "launchspy-frontend",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
+    "dev": "vite",
+    "format": "eslint --fix --ext .js,.json,.ts,.tsx src/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -44,6 +45,7 @@
     "cmdk": "^1.0.0",
     "date-fns": "^3.3.1",
     "embla-carousel-react": "^8.0.0",
+    "eslint-config-tonyfromundefined": "^0.10.0",
     "input-otp": "^1.0.1",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",

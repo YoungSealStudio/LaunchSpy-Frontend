@@ -1,25 +1,25 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react'
 
 export default function useUserAuthForm() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
   function onClickSignInWithEmail(e: FormEvent) {
-    e.preventDefault();
+    e.preventDefault()
 
-    setIsLoading(true);
+    setIsLoading(true)
 
     setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+      setIsLoading(false)
+    }, 2000)
   }
 
   function onClickGoogleLogin() {
-    setIsLoading(true);
+    setIsLoading(true)
 
     setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+      setIsLoading(false)
+    }, 2000)
   }
 
-  return { isLoading, onClickSignInWithEmail, onClickGoogleLogin };
+  return { isLoading, onClickGoogleLogin, onClickSignInWithEmail }
 }
