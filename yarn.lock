@@ -1567,7 +1567,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.7, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.18.9, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.7, @babel/runtime@npm:^7.8.4":
   version: 7.24.0
   resolution: "@babel/runtime@npm:7.24.0"
   dependencies:
@@ -3464,7 +3464,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-router@npm:^1.20.1":
+"@tanstack/react-router@npm:1.20.1, @tanstack/react-router@npm:^1.20.1":
   version: 1.20.1
   resolution: "@tanstack/react-router@npm:1.20.1"
   dependencies:
@@ -3489,6 +3489,21 @@ __metadata:
     react: ">=16"
     react-dom: ">=16"
   checksum: 10/bda3c394e0a2eac08d5c0545a18826ac52fd6d1dd6d142e27bf3a0005aa289015d9b28c25015c1954af410481b50b1a8e811144354fb3bae3b87b547ad32cc25
+  languageName: node
+  linkType: hard
+
+"@tanstack/router-devtools@npm:^1.20.1":
+  version: 1.20.1
+  resolution: "@tanstack/router-devtools@npm:1.20.1"
+  dependencies:
+    "@tanstack/react-router": "npm:1.20.1"
+    clsx: "npm:^2.1.0"
+    date-fns: "npm:^2.29.1"
+    goober: "npm:^2.1.14"
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 10/a8d6e0bfc4d214a59ec7bab0409a3f222e442893f84cf00e9ac43b4b8d8fa7b9b51a2f150ae209a9a0f98f801dc612bb709b6202fc34a00ea0b3865e0e1100cd
   languageName: node
   linkType: hard
 
@@ -4859,6 +4874,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^2.29.1":
+  version: 2.30.0
+  resolution: "date-fns@npm:2.30.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.21.0"
+  checksum: 10/70b3e8ea7aaaaeaa2cd80bd889622a4bcb5d8028b4de9162cbcda359db06e16ff6e9309e54eead5341e71031818497f19aaf9839c87d1aba1e27bb4796e758a9
+  languageName: node
+  linkType: hard
+
 "date-fns@npm:^3.3.1":
   version: 3.3.1
   resolution: "date-fns@npm:3.3.1"
@@ -6128,6 +6152,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"goober@npm:^2.1.14":
+  version: 2.1.14
+  resolution: "goober@npm:2.1.14"
+  peerDependencies:
+    csstype: ^3.0.10
+  checksum: 10/372f18333ef64c403d29be7c1175cc9cd74cb947ec52cd42fbb1cf3f9870ac1dfec9c7671192cbf47ebc0ec17d8b05b6ef9a2b92952397d5b555a692381d5eaa
+  languageName: node
+  linkType: hard
+
 "gopd@npm:^1.0.1":
   version: 1.0.1
   resolution: "gopd@npm:1.0.1"
@@ -6873,6 +6906,7 @@ __metadata:
     "@radix-ui/react-toggle-group": "npm:^1.0.4"
     "@radix-ui/react-tooltip": "npm:^1.0.7"
     "@tanstack/react-router": "npm:^1.20.1"
+    "@tanstack/router-devtools": "npm:^1.20.1"
     "@tanstack/router-vite-plugin": "npm:^1.20.0"
     "@types/node": "npm:^20.11.25"
     "@types/react": "npm:^18.2.56"
