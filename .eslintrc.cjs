@@ -9,6 +9,7 @@ module.exports = {
   extends: ['tonyfromundefined'],
   root: true,
   rules: {
+    '@typescript-eslint/no-unused-vars': 'warn',
     'prettier/prettier': ['error', prettierConfig, { usePrettierrc: false }],
   },
 }
