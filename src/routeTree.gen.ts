@@ -17,8 +17,10 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const LoginLazyImport = createFileRoute('/login')()
+const AddRestaurantLazyImport = createFileRoute('/add-restaurant')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
+const CompaniesCompnayIdLazyImport = createFileRoute('/companies/$compnayId')()
 
 // Create/Update Routes
 
@@ -26,6 +28,13 @@ const LoginLazyRoute = LoginLazyImport.update({
   path: '/login',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
+
+const AddRestaurantLazyRoute = AddRestaurantLazyImport.update({
+  path: '/add-restaurant',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/add-restaurant.lazy').then((d) => d.Route),
+)
 
 const AboutLazyRoute = AboutLazyImport.update({
   path: '/about',
@@ -36,6 +45,13 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const CompaniesCompnayIdLazyRoute = CompaniesCompnayIdLazyImport.update({
+  path: '/companies/$compnayId',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/companies.$compnayId.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -49,8 +65,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/add-restaurant': {
+      preLoaderRoute: typeof AddRestaurantLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/login': {
       preLoaderRoute: typeof LoginLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/companies/$compnayId': {
+      preLoaderRoute: typeof CompaniesCompnayIdLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -61,7 +85,9 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   AboutLazyRoute,
+  AddRestaurantLazyRoute,
   LoginLazyRoute,
+  CompaniesCompnayIdLazyRoute,
 ])
 
 /* prettier-ignore-end */
