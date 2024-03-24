@@ -20,7 +20,15 @@ const LoginLazyImport = createFileRoute('/login')()
 const AddRestaurantLazyImport = createFileRoute('/add-restaurant')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
-const CompaniesCompnayIdLazyImport = createFileRoute('/companies/$compnayId')()
+const CompaniesCompnayIdRestaurantsLazyImport = createFileRoute(
+  '/companies/$compnayId/restaurants',
+)()
+const CompaniesCompnayIdHomeLazyImport = createFileRoute(
+  '/companies/$compnayId/home',
+)()
+const CompaniesCompnayIdAddRestaurantLazyImport = createFileRoute(
+  '/companies/$compnayId/add-restaurant',
+)()
 
 // Create/Update Routes
 
@@ -46,12 +54,34 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const CompaniesCompnayIdLazyRoute = CompaniesCompnayIdLazyImport.update({
-  path: '/companies/$compnayId',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/companies.$compnayId.lazy').then((d) => d.Route),
+const CompaniesCompnayIdRestaurantsLazyRoute =
+  CompaniesCompnayIdRestaurantsLazyImport.update({
+    path: '/companies/$compnayId/restaurants',
+    getParentRoute: () => rootRoute,
+  } as any).lazy(() =>
+    import('./routes/companies.$compnayId.restaurants.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const CompaniesCompnayIdHomeLazyRoute = CompaniesCompnayIdHomeLazyImport.update(
+  {
+    path: '/companies/$compnayId/home',
+    getParentRoute: () => rootRoute,
+  } as any,
+).lazy(() =>
+  import('./routes/companies.$compnayId.home.lazy').then((d) => d.Route),
 )
+
+const CompaniesCompnayIdAddRestaurantLazyRoute =
+  CompaniesCompnayIdAddRestaurantLazyImport.update({
+    path: '/companies/$compnayId/add-restaurant',
+    getParentRoute: () => rootRoute,
+  } as any).lazy(() =>
+    import('./routes/companies.$compnayId.add-restaurant.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
 // Populate the FileRoutesByPath interface
 
@@ -73,8 +103,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginLazyImport
       parentRoute: typeof rootRoute
     }
-    '/companies/$compnayId': {
-      preLoaderRoute: typeof CompaniesCompnayIdLazyImport
+    '/companies/$compnayId/add-restaurant': {
+      preLoaderRoute: typeof CompaniesCompnayIdAddRestaurantLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/companies/$compnayId/home': {
+      preLoaderRoute: typeof CompaniesCompnayIdHomeLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/companies/$compnayId/restaurants': {
+      preLoaderRoute: typeof CompaniesCompnayIdRestaurantsLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -87,7 +125,9 @@ export const routeTree = rootRoute.addChildren([
   AboutLazyRoute,
   AddRestaurantLazyRoute,
   LoginLazyRoute,
-  CompaniesCompnayIdLazyRoute,
+  CompaniesCompnayIdAddRestaurantLazyRoute,
+  CompaniesCompnayIdHomeLazyRoute,
+  CompaniesCompnayIdRestaurantsLazyRoute,
 ])
 
 /* prettier-ignore-end */
