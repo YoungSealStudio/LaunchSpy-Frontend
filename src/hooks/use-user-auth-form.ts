@@ -1,6 +1,12 @@
 import { FormEvent, useState } from 'react'
 
-export default function useUserAuthForm() {
+import { LAUNCH_SPY_SEVER_URL } from '@/constants'
+
+type useUserAuthFormProps = {
+  gsiClient?: typeof google
+}
+
+const useUserAuthForm = (props?: useUserAuthFormProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   function onClickSignInWithEmail(e: FormEvent) {
@@ -16,10 +22,35 @@ export default function useUserAuthForm() {
   function onClickGoogleLogin() {
     setIsLoading(true)
 
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
+    const gsiClient = props?.gsiClient
+
+    if (!gsiClient) {
+      return
+    }
+
+    const client = gsiClient.accounts.oauth2.initCodeClient({
+      callback: (response) => {
+        //TODO. 코드 보내기
+        // fetch(`${LAUNCH_SPY_SEVER_URL}/auth/google/login?code=${response.code}`)
+
+        console.log('get Code', response)
+
+        setIsLoading(false)
+      },
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      error_callback: (error) => {
+        // TODO. 애러 처리
+        console.error('error', error)
+        setIsLoading(false)
+      },
+      scope: 'https://www.googleapis.com/auth/userinfo.email', // https://developers.google.com/identity/protocols/oauth2/scopes?hl=ko
+      ux_mode: 'popup',
+    })
+
+    client.requestCode()
   }
 
   return { isLoading, onClickGoogleLogin, onClickSignInWithEmail }
 }
+
+export default useUserAuthForm

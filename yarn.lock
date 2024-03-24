@@ -3550,6 +3550,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/google.accounts@npm:^0.0.14":
+  version: 0.0.14
+  resolution: "@types/google.accounts@npm:0.0.14"
+  checksum: 10/0332acd210eaad1904d28a9de2081da796cb8c22e4f61bbe0768729c71d1de1606355abc0615907505b9f4ac28694911b9722a6a4e6ee563c21f747e9e1c32b5
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.12, @types/json-schema@npm:^7.0.9":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -6908,6 +6915,7 @@ __metadata:
     "@tanstack/react-router": "npm:^1.20.1"
     "@tanstack/router-devtools": "npm:^1.20.1"
     "@tanstack/router-vite-plugin": "npm:^1.20.0"
+    "@types/google.accounts": "npm:^0.0.14"
     "@types/node": "npm:^20.11.25"
     "@types/react": "npm:^18.2.56"
     "@types/react-dom": "npm:^18.2.19"
