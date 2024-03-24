@@ -1,11 +1,11 @@
-import UserAuthForm from './app/components/user-auth-form';
+import UserAuthForm from './app/components/user-auth-form'
+import { ResponsiveDialog } from './components/responsive/responsive-dialog'
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
-} from './components/ui/accordion';
-import { Card } from './components/ui/card';
+} from './components/ui/accordion'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,20 +16,19 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from './components/ui/alert-dialog';
-
-import useUserAuthForm from './hooks/use-user-auth-form';
-import { Button } from './components/ui/button';
-import { ResponsiveDialog } from './components/responsive/responsive-dialog';
+} from './components/ui/alert-dialog'
+import { Button } from './components/ui/button'
+import { Card } from './components/ui/card'
+import useUserAuthForm from './hooks/use-user-auth-form'
 
 function ComponentsShowcase() {
-  const userAuthFormProps = useUserAuthForm();
+  const userAuthFormProps = useUserAuthForm()
 
   return (
-    <div className='p-4 gap-4 flex '>
-      <Card className='p-2 w-[400px]'>
-        <Accordion type='single' collapsible className='flex-1'>
-          <AccordionItem value='item-1'>
+    <div className="p-4 gap-4 flex ">
+      <Card className="p-2 w-[400px]">
+        <Accordion className="flex-1" collapsible type="single">
+          <AccordionItem value="item-1">
             <AccordionTrigger>Is it accessible?</AccordionTrigger>
             <AccordionContent>
               Yes. It adheres to the WAI-ARIA design pattern.
@@ -38,11 +37,11 @@ function ComponentsShowcase() {
         </Accordion>
       </Card>
 
-      <Card className='p-2 w-[400px]'>
-        <UserAuthForm {...userAuthFormProps} className='w-full' />
+      <Card className="p-2 w-[400px]">
+        <UserAuthForm {...userAuthFormProps} className="w-full" />
       </Card>
 
-      <Card className='p-2 w-[400px]'>
+      <Card className="p-2 w-[400px]">
         <AlertDialog>
           <AlertDialogTrigger>
             <Button>Open AlertDialog</Button>
@@ -63,12 +62,12 @@ function ComponentsShowcase() {
         </AlertDialog>
       </Card>
 
-      <Card className='p-2 w-[400px]'>
+      <Card className="p-2 w-[400px]">
         Responsive Dialog <br />
         <ResponsiveDialog />
       </Card>
     </div>
-  );
+  )
 }
 
-export default ComponentsShowcase;
+export default ComponentsShowcase
