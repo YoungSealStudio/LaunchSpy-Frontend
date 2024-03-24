@@ -14,6 +14,15 @@ const useUserAuthForm = (props?: useUserAuthFormProps) => {
 
     setIsLoading(true)
 
+    const formData = new FormData(e.currentTarget as HTMLFormElement)
+    const email = formData.get('email')
+    const password = formData.get('password')
+
+    console.log('email', email)
+    console.log('password', password)
+
+    //TODO API 호출
+
     setTimeout(() => {
       setIsLoading(false)
     }, 2000)
