@@ -1,50 +1,50 @@
-import { Button } from '@/components/ui/button';
-import WordShuffler from '@/components/ui/word-shuffle-render';
-import { useState } from 'react';
+import { useState } from 'react'
 
-const restaurants = [
-  '김밥천국',
-  '김밥지옥',
-  '솔로지옥',
-  '메머드커피',
-  '일일향',
-];
+import { Button } from '@/components/ui/button'
+import WordShuffler from '@/components/ui/word-shuffle-render'
+
+const restaurants = ['김밥천국', '김밥지옥', '솔로지옥', '메머드커피', '일일향']
 
 function pickRandom<T>(array: T[]): T {
-  const randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
+  const randomIndex = Math.floor(Math.random() * array.length)
+  return array[randomIndex]
 }
 
 function Home() {
-  const [name, setName] = useState('나는 맛집');
-  const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = useState('나는 맛집')
+  const [isLoading, setIsLoading] = useState(false)
 
   function onClickButton() {
-    setIsLoading(true);
+    setIsLoading(true)
+    setName('HELLO WORLD WORLD')
 
     setTimeout(() => {
-      setIsLoading(false);
-      setName(pickRandom(restaurants));
-    }, 2000);
+      setIsLoading(false)
+      setName(pickRandom(restaurants))
+    }, 2000)
   }
 
   return (
-    <div>
-      <WordShuffler
-        key={name}
-        text={name}
-        options={{
-          textColor: '#000000',
-          pending: isLoading,
-          timeOffset: 5,
-          mixCapital: true,
-          mixSpecialCharacters: true,
-        }}
-      />
+    <>
+      <div className="flex flex-col w-full justify-center items-center">
+        <div>LUNCH SPY</div>
 
-      <Button onClick={onClickButton}>다음 맛집은!?!?!?</Button>
-    </div>
-  );
+        <WordShuffler
+          key={name}
+          options={{
+            mixCapital: true,
+            mixSpecialCharacters: true,
+            pending: isLoading,
+            textColor: '#000000',
+            timeOffset: 5,
+          }}
+          text={name}
+        />
+
+        <Button onClick={onClickButton}>다음 맛집은!?!?!?</Button>
+      </div>
+    </>
+  )
 }
 
-export default Home;
+export default Home

@@ -1,44 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
 interface WordShufflerProps {
-  text: string;
   options?: {
-    fps?: number;
-    pending: boolean;
-    timeOffset?: number;
-    textColor?: string;
-    fontSize?: string;
-    mixCapital?: boolean;
-    mixSpecialCharacters?: boolean;
-  };
+    fontSize?: string
+    fps?: number
+    mixCapital?: boolean
+    mixSpecialCharacters?: boolean
+    pending: boolean
+    textColor?: string
+    timeOffset?: number
+  }
+  text: string
 }
 
 interface ShuffledChar {
-  char: string;
-  color: string;
+  char: string
+  color: string
 }
 
-const WordShuffler: React.FC<WordShufflerProps> = ({ text, options = {} }) => {
-  const [shuffledText, setShuffledText] = useState<ShuffledChar[]>([]);
-  const defaultOptions = {
-    fps: 20,
-    timeOffset: 100, // Adjusted to milliseconds
-    textColor: '#000',
+const WordShuffler: React.FC<WordShufflerProps> = ({ options = {}, text }) => {
+  const [shuffledText, setShuffledText] = useState<ShuffledChar[]>([])
+
+  const shuffleOptions = {
     fontSize: '50px',
+    fps: 20,
     mixCapital: false,
     mixSpecialCharacters: false,
     pending: true,
+    textColor: '#000',
+    timeOffset: 100,
     ...options,
-  };
+  }
 
   useEffect(() => {
-    let currentIndex = 0;
-    let frameCount = 0;
-    let combinedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    let currentIndex = 0
+    let frameCount = 0
+    let combinedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
-    if (defaultOptions.mixSpecialCharacters) {
-      const specialCharacters = '!§$%&/()=?_<>>^°*#-:;~'.split('');
-      combinedChars = [...combinedChars, ...specialCharacters];
+    if (shuffleOptions.mixSpecialCharacters) {
+      const specialCharacters = '!§$%&/()=?_<>>^°*#-:;~'.split('')
+      combinedChars = [...combinedChars, ...specialCharacters]
     }
 
     const getRandomColor = () => {
@@ -62,55 +63,55 @@ const WordShuffler: React.FC<WordShufflerProps> = ({ text, options = {} }) => {
         '#795548',
         '#9e9e9e',
         '#607d8b',
-      ];
-      return colors[Math.floor(Math.random() * colors.length)];
-    };
+      ]
+      return colors[Math.floor(Math.random() * colors.length)]
+    }
 
     const getRandCharacter = (characterToReplace: string) => {
       if (characterToReplace === ' ') {
-        return ' ';
+        return ' '
       }
-      const randNum = Math.floor(Math.random() * combinedChars.length);
-      return combinedChars[randNum];
-    };
+      const randNum = Math.floor(Math.random() * combinedChars.length)
+      return combinedChars[randNum]
+    }
 
     const shuffleText = () => {
       const newText = text.split('').map((char, index) => ({
         char: index < currentIndex ? char : getRandCharacter(char),
         color:
-          index < currentIndex ? defaultOptions.textColor : getRandomColor(),
-      }));
+          index < currentIndex ? shuffleOptions.textColor : getRandomColor(),
+      }))
 
       if (
-        !defaultOptions.pending &&
-        frameCount % defaultOptions.timeOffset === 0
+        !shuffleOptions.pending &&
+        frameCount % shuffleOptions.timeOffset === 0
       ) {
         if (currentIndex < text.length) {
-          currentIndex++;
+          currentIndex++
         }
       }
 
-      setShuffledText(newText);
-      frameCount++;
-    };
+      setShuffledText(newText)
+      frameCount++
+    }
 
-    const intervalId = setInterval(shuffleText, 1000 / defaultOptions.fps);
+    const intervalId = setInterval(shuffleText, 1000 / shuffleOptions.fps)
 
-    return () => clearInterval(intervalId);
-  }, [text, options, defaultOptions.pending]);
+    return () => clearInterval(intervalId)
+  }, [text, options, shuffleOptions.pending])
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+    <div className="min-h-20">
       {shuffledText.map((item, index) => (
         <span
           key={index}
-          style={{ color: item.color, fontSize: defaultOptions.fontSize }}
+          style={{ color: item.color, fontSize: shuffleOptions.fontSize }}
         >
           {item.char}
         </span>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default WordShuffler;
+export default WordShuffler
