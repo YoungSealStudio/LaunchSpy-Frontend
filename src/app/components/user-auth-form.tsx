@@ -41,7 +41,7 @@ function UserAuthForm({
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            이메일로 로그인 하기
           </Button>
         </div>
       </form>
@@ -64,9 +64,9 @@ function UserAuthForm({
         {isLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Icons.google className="mr-2 h-4 w-4" />
+          <Icons.google className="mr-2 h-4 w-4 text-red-600" />
         )}
-        Google
+        구글 로그인
       </Button>
     </div>
   )

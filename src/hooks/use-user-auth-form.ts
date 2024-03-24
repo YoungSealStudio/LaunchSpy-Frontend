@@ -31,7 +31,17 @@ const useUserAuthForm = (props?: useUserAuthFormProps) => {
     const client = gsiClient.accounts.oauth2.initCodeClient({
       callback: (response) => {
         //TODO. 코드 보내기
-        // fetch(`${LAUNCH_SPY_SEVER_URL}/auth/google/login?code=${response.code}`)
+        console.log(
+          '$$$',
+          `${LAUNCH_SPY_SEVER_URL}/auth/google/login?code=${response.code}`
+        )
+        fetch(
+          `${LAUNCH_SPY_SEVER_URL}/auth/google/login?code=${response.code}`
+        ).then((res) => {
+          res.json().then((data) => {
+            console.log('code send result data', data)
+          })
+        })
 
         console.log('get Code', response)
 
