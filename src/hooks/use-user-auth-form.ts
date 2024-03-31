@@ -1,13 +1,23 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 
 import { LAUNCH_SPY_SEVER_URL } from '@/constants'
 
 type useUserAuthFormProps = {
+  emailCheck?: boolean
   gsiClient?: typeof google
+  onEmailSignCheck?: () => void
 }
 
 const useUserAuthForm = (props?: useUserAuthFormProps) => {
+  const [isEmailSignIn, setIsEmailSignIn] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const passwordInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (isEmailSignIn) {
+      passwordInputRef.current?.focus()
+    }
+  }, [isEmailSignIn])
 
   function onClickSignInWithEmail(e: FormEvent) {
     e.preventDefault()
@@ -18,14 +28,24 @@ const useUserAuthForm = (props?: useUserAuthFormProps) => {
     const email = formData.get('email')
     const password = formData.get('password')
 
+    if (!isEmailSignIn) {
+      // check email
+      setTimeout(() => {
+        setIsLoading(false)
+        setIsEmailSignIn(true)
+      }, 2000)
+
+      // TODO. email 없으면 회원가입으로 보내야함
+    }
+
+    if (isEmailSignIn) {
+      // TODO. email, password로 로그인시키기
+    }
+
     console.log('email', email)
     console.log('password', password)
 
     //TODO API 호출
-
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
   }
 
   function onClickGoogleLogin() {
@@ -69,7 +89,13 @@ const useUserAuthForm = (props?: useUserAuthFormProps) => {
     client.requestCode()
   }
 
-  return { isLoading, onClickGoogleLogin, onClickSignInWithEmail }
+  return {
+    isEmailSignIn,
+    isLoading,
+    onClickGoogleLogin,
+    onClickSignInWithEmail,
+    passwordInputRef,
+  }
 }
 
 export default useUserAuthForm
