@@ -14,9 +14,11 @@ interface UserAuthFormProps
 
 function UserAuthForm({
   className,
+  isEmailSignIn = false,
   isLoading,
   onClickGoogleLogin,
   onClickSignInWithEmail,
+  passwordInputRef,
   ...props
 }: UserAuthFormProps) {
   return (
@@ -31,33 +33,36 @@ function UserAuthForm({
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
+              disabled={isLoading || isEmailSignIn}
               id="email"
               name="email"
               placeholder="name@example.com"
               type="email"
             />
           </div>
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="password">
-              Password
-            </Label>
-            <Input
-              autoCapitalize="none"
-              autoComplete="password"
-              autoCorrect="off"
-              disabled={isLoading}
-              id="password"
-              name="password"
-              placeholder="비밀번호를 입력해주세요"
-              type="password"
-            />
-          </div>
+          {isEmailSignIn && (
+            <div className="grid gap-1">
+              <Label className="sr-only" htmlFor="password">
+                Password
+              </Label>
+              <Input
+                autoCapitalize="none"
+                autoComplete="password"
+                autoCorrect="off"
+                disabled={isLoading}
+                id="password"
+                name="password"
+                placeholder="비밀번호를 입력해주세요"
+                ref={passwordInputRef}
+                type="password"
+              />
+            </div>
+          )}
           <Button disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            이메일로 로그인 하기
+            {isEmailSignIn ? '로그인' : '이메일로 로그인 하기'}
           </Button>
         </div>
       </form>
