@@ -36,7 +36,13 @@ const useUserAuthForm = (props?: useUserAuthFormProps) => {
         setIsLoading(false)
         setIsEmailSignIn(true)
 
-        navigate({ to: '/join' })
+        navigate({
+          search: {
+            email: email as string,
+            // TODO. name, imageURL도 같이 보내야함
+          },
+          to: '/join',
+        })
       }, 1000)
 
       // TODO. email 없으면 회원가입으로 보내야함

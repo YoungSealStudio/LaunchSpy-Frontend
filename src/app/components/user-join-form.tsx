@@ -48,7 +48,15 @@ const userSchema = z
 
 type userType = z.infer<typeof userSchema>
 
-function UserJoinForm() {
+function UserJoinForm({
+  email,
+  imageUrl,
+  name,
+}: {
+  email?: string
+  imageUrl?: string
+  name?: string
+}) {
   const router = useNavigate()
   const handleJoinClick = () => {
     form.trigger(['name', 'email', 'password'])
@@ -80,7 +88,7 @@ function UserJoinForm() {
     defaultValues: {
       company: '',
       confirmPassword: '',
-      email: '',
+      email: email || '',
       name: '',
       password: '',
     },
