@@ -1,7 +1,6 @@
-import { Link, createLazyFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 
 import UserAuthForm from '@/app/components/user-auth-form'
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import useUserAuthForm from '@/hooks/use-user-auth-form'
 import { makeGsiClientResource } from '@/resources/gsiClientResource'
