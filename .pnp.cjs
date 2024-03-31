@@ -58,6 +58,7 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-router", "virtual:2b7cf18c5c01cbca850c599522e36cce057e564b1484c86d9fb03ec93f2d007ce9865a6ade630807ea0bd27db4ea9bd6c763b379ba705d299562712205e77fcb#npm:1.20.1"],\
           ["@tanstack/router-devtools", "virtual:2b7cf18c5c01cbca850c599522e36cce057e564b1484c86d9fb03ec93f2d007ce9865a6ade630807ea0bd27db4ea9bd6c763b379ba705d299562712205e77fcb#npm:1.20.1"],\
           ["@tanstack/router-vite-plugin", "npm:1.20.0"],\
+          ["@types/google.accounts", "npm:0.0.14"],\
           ["@types/node", "npm:20.11.25"],\
           ["@types/react", "npm:18.2.61"],\
           ["@types/react-dom", "npm:18.2.19"],\
@@ -5521,6 +5522,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/google.accounts", [\
+      ["npm:0.0.14", {\
+        "packageLocation": "./.yarn/cache/@types-google.accounts-npm-0.0.14-3c3db15bc6-0332acd210.zip/node_modules/@types/google.accounts/",\
+        "packageDependencies": [\
+          ["@types/google.accounts", "npm:0.0.14"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/json-schema", [\
       ["npm:7.0.15", {\
         "packageLocation": "./.yarn/cache/@types-json-schema-npm-7.0.15-fd16381786-1a3c3e0623.zip/node_modules/@types/json-schema/",\
@@ -9744,6 +9754,7 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-router", "virtual:2b7cf18c5c01cbca850c599522e36cce057e564b1484c86d9fb03ec93f2d007ce9865a6ade630807ea0bd27db4ea9bd6c763b379ba705d299562712205e77fcb#npm:1.20.1"],\
           ["@tanstack/router-devtools", "virtual:2b7cf18c5c01cbca850c599522e36cce057e564b1484c86d9fb03ec93f2d007ce9865a6ade630807ea0bd27db4ea9bd6c763b379ba705d299562712205e77fcb#npm:1.20.1"],\
           ["@tanstack/router-vite-plugin", "npm:1.20.0"],\
+          ["@types/google.accounts", "npm:0.0.14"],\
           ["@types/node", "npm:20.11.25"],\
           ["@types/react", "npm:18.2.61"],\
           ["@types/react-dom", "npm:18.2.19"],\

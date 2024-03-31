@@ -33,15 +33,31 @@ function UserAuthForm({
               autoCorrect="off"
               disabled={isLoading}
               id="email"
+              name="email"
               placeholder="name@example.com"
               type="email"
+            />
+          </div>
+          <div className="grid gap-1">
+            <Label className="sr-only" htmlFor="password">
+              Password
+            </Label>
+            <Input
+              autoCapitalize="none"
+              autoComplete="password"
+              autoCorrect="off"
+              disabled={isLoading}
+              id="password"
+              name="password"
+              placeholder="비밀번호를 입력해주세요"
+              type="password"
             />
           </div>
           <Button disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            이메일로 로그인 하기
           </Button>
         </div>
       </form>
@@ -64,9 +80,9 @@ function UserAuthForm({
         {isLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Icons.google className="mr-2 h-4 w-4" />
+          <Icons.google className="mr-2 h-4 w-4 text-red-600" />
         )}
-        Google
+        구글 로그인
       </Button>
     </div>
   )
