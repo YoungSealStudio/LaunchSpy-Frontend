@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 
 import { LAUNCH_SPY_SEVER_URL } from '@/constants'
@@ -12,6 +13,7 @@ const useUserAuthForm = (props?: useUserAuthFormProps) => {
   const [isEmailSignIn, setIsEmailSignIn] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const passwordInputRef = useRef<HTMLInputElement>(null)
+  const navigate = useNavigate({ from: '/login' })
 
   useEffect(() => {
     if (isEmailSignIn) {
@@ -33,7 +35,15 @@ const useUserAuthForm = (props?: useUserAuthFormProps) => {
       setTimeout(() => {
         setIsLoading(false)
         setIsEmailSignIn(true)
-      }, 2000)
+
+        navigate({
+          search: {
+            email: email as string,
+            // TODO. name, imageURL도 같이 보내야함
+          },
+          to: '/join',
+        })
+      }, 1000)
 
       // TODO. email 없으면 회원가입으로 보내야함
     }

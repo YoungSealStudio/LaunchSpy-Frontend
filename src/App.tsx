@@ -4,6 +4,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 
+import { Toaster } from './components/ui/toaster'
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
@@ -24,6 +25,7 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <RouterProvider router={router} />
+      <Toaster />
     </StrictMode>
   )
 }

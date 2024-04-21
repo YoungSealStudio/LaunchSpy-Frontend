@@ -10,10 +10,13 @@ type UserAuthFormTypes = ReturnType<typeof useUserAuthForm>
 
 interface UserAuthFormProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    UserAuthFormTypes {}
+    UserAuthFormTypes {
+  emailPlaceholder?: string
+}
 
 function UserAuthForm({
   className,
+  emailPlaceholder,
   isEmailSignIn = false,
   isLoading,
   onClickGoogleLogin,
@@ -36,7 +39,7 @@ function UserAuthForm({
               disabled={isLoading || isEmailSignIn}
               id="email"
               name="email"
-              placeholder="name@example.com"
+              placeholder={emailPlaceholder ?? 'name@example.com'}
               type="email"
             />
           </div>
@@ -62,18 +65,13 @@ function UserAuthForm({
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            {isEmailSignIn ? '로그인' : '이메일로 로그인 하기'}
+            {isEmailSignIn ? '로그인' : '이메일로 시작 하기'}
           </Button>
         </div>
       </form>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
-          </span>
         </div>
       </div>
       <Button
@@ -87,7 +85,7 @@ function UserAuthForm({
         ) : (
           <Icons.google className="mr-2 h-4 w-4 text-red-600" />
         )}
-        구글 로그인
+        구글로 시작하기
       </Button>
     </div>
   )
